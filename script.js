@@ -548,12 +548,25 @@ let filters = {
 }
 
 //Filtr
-const renderCriminals = function(ourCriminal, tryToFind){
+const renderCriminals = function(ourCriminals, tryToFind){
+    let arrayResult = ourCriminals.filter(function(oneSuspect){
+        return oneSuspect.licencePlate.toLowerCase().includes(tryToFind.searchText.toLowerCase())
+        
+    });
+    document.querySelector("#idCriminal").innerHTML = ""
+    arrayResult.forEach(function(oneSuspect){
+        
+        let paragraph = document.createElement("p")
+        paragraph.innerHTML = `Jméno ${oneSuspect.firstName} ${oneSuspect.secondName}`
+        document.querySelector("#idCriminal").appendChild(paragraph)
 
+    })
+        
 }
 
 // načtení dat z políčka
 let licencePlate = document.querySelector("#licence-plate")
+
 licencePlate.addEventListener("input", function(event){
     filters.searchText = event.target.value
     renderCriminals(criminals, filters)
