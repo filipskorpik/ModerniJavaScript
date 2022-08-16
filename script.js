@@ -518,57 +518,65 @@
 // })
 
 
-let criminals = [{
-    firstName: "Martin",
-    secondName: "Zelený",
-    birth: 1985,
-    licencePlate: "85cc322",
-    address: "U sloupů 16",
-    city: "České Budějovice"
-}, {
-    firstName: "Jana",
-    secondName: "Růžová",
-    birth: 1996,
-    licencePlate: "85b32",
-    address: "Malská 29",
-    city: "České Budějovice"
-}, {
-    firstName: "Filip",
-    secondName: "Modrý",
-    birth: 1989,
-    licencePlate: "asd3",
-    address: "Stevardská 38",
-    city: "České Budějovice"
-}]
 
 
-// uložení dat z políčka
-let filters = {
-    searchText: ""
-}
 
-//Filtr
-const renderCriminals = function(ourCriminals, tryToFind){
-    let arrayResult = ourCriminals.filter(function(oneSuspect){
-        return oneSuspect.licencePlate.toLowerCase().includes(tryToFind.searchText.toLowerCase())
+// let criminals = [{
+//     firstName: "Martin",
+//     secondName: "Zelený",
+//     birth: 1985,
+//     licencePlate: "85cc322",
+//     address: "U sloupů 16",
+//     city: "České Budějovice"
+// }, {
+//     firstName: "Jana",
+//     secondName: "Růžová",
+//     birth: 1996,
+//     licencePlate: "85b32",
+//     address: "Malská 29",
+//     city: "České Budějovice"
+// }, {
+//     firstName: "Filip",
+//     secondName: "Modrý",
+//     birth: 1989,
+//     licencePlate: "asd3",
+//     address: "Stevardská 38",
+//     city: "České Budějovice"
+// }]
+
+// // uložení dat z políčka
+// let filters = {
+//     searchText: ""
+// }
+
+// //Filtr
+// const renderCriminals = function(ourCriminals, tryToFind){
+//     let arrayResult = ourCriminals.filter(function(oneSuspect){
+//         return oneSuspect.licencePlate.toLowerCase().includes(tryToFind.searchText.toLowerCase())
         
-    });
-    document.querySelector("#idCriminal").innerHTML = ""
-    arrayResult.forEach(function(oneSuspect){
+//     });
+//     document.querySelector("#idCriminal").innerHTML = ""
+//     arrayResult.forEach(function(oneSuspect){
         
-        let paragraph = document.createElement("p")
-        paragraph.innerHTML = `Jméno ${oneSuspect.firstName} ${oneSuspect.secondName}`
-        document.querySelector("#idCriminal").appendChild(paragraph)
+//         let paragraph = document.createElement("p")
+//         paragraph.innerHTML = `Jméno: ${oneSuspect.firstName} ${oneSuspect.secondName}`
+//         document.querySelector("#idCriminal").appendChild(paragraph)
 
-    })
+//     })
         
-}
+// }
+// // načtení dat z políčka
+// let licencePlate = document.querySelector("#licence-plate")
 
-// načtení dat z políčka
-let licencePlate = document.querySelector("#licence-plate")
+// licencePlate.addEventListener("input", function(event){
+//     filters.searchText = event.target.value
+//     renderCriminals(criminals, filters)
+// })
 
-licencePlate.addEventListener("input", function(event){
-    filters.searchText = event.target.value
-    renderCriminals(criminals, filters)
+
+document.querySelector("#test-form").addEventListener("submit", function(event){
+    event.preventDefault()
+    let paragraph = document.createElement("p")
+   paragraph.textContent = event.target.elements.firstName.value
+   document.querySelector("#from-form").appendChild(paragraph)
 })
-

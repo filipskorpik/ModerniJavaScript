@@ -31,6 +31,8 @@ document.querySelector(".tasks").appendChild(newParagraph)
 //     document.querySelector(".tasks").appendChild(paragraph)
 // }
 
+
+
 // vypsání konkrétních zbývajících úkolů
 let par = myToDos.forEach(function(oneDo){
     if(oneDo.completion === false){
@@ -44,3 +46,9 @@ let par = myToDos.forEach(function(oneDo){
 document.querySelector(".btn").addEventListener("click", function(event){
     console.log("kliknuto");
 })
+
+
+
+/***** 
+ *      Filtr 
+ *               *****/ 
