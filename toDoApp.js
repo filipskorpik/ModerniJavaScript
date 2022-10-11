@@ -1,54 +1,85 @@
 myToDos = [{
     text: "Vynést koš",
     completion: false
-},{
+}, {
     text: "Nakoupit",
     completion: false
-},{
+}, {
     text: "Uklidit",
     completion: true
-},{
+}, {
     text: "nakrmit psa",
     completion: true
-},{
+}, {
     text: "nakrmit kočku",
     completion: false
 }]
-// filtrování počtu nesplněných úkolů
-let toDoLeft = myToDos.filter(function(oneToDo){
+
+// filtr počtu zbývajících úkolů
+let toDoLeft = myToDos.filter(function (oneToDo) {
     return oneToDo.completion === false
 })
 
-// vypsání počtu zbývajících úkolů
-let newParagraph = document.createElement("p")
-newParagraph.textContent = `Zbývá úkolů: ${toDoLeft.length}`
-document.querySelector(".tasks").appendChild(newParagraph)
+let paragraph = document.createElement("p")
+paragraph.textContent = `Zbývá úkolů: ${toDoLeft.length}`
+document.querySelector(".do-left").appendChild(paragraph)
 
 
-// for(let i = 0; i < myToDos.length; i++){
-//     let paragraph = document.createElement("p")
-//     paragraph.textContent = myToDos[i].text
-//     document.querySelector(".tasks").appendChild(paragraph)
-// }
+// Vypsání všech úkolů do stránky
+for (i = 0; i < myToDos.length; i++) {
+    let secondParagraph = document.createElement("p")
+    secondParagraph.textContent = myToDos[i].text
+    document.querySelector(".tasks").appendChild(secondParagraph)
+}
 
-
-
-// vypsání konkrétních zbývajících úkolů
-let par = myToDos.forEach(function(oneDo){
-    if(oneDo.completion === false){
-        let paragraph = document.createElement("p")
-        paragraph.textContent = oneDo.text
-        document.querySelector(".tasks").appendChild(paragraph)
-    }
-})
-
-
-document.querySelector(".btn").addEventListener("click", function(event){
-    console.log("kliknuto");
+// funkce tlačítka
+document.querySelector(".btn").addEventListener("click", function () {
+    console.log("Funguje to!!!");
 })
 
 
 
-/***** 
- *      Filtr 
- *               *****/ 
+
+
+
+//*************** filtrování úkolů **************
+
+//zachycení políčka
+let search = document.querySelector("#search")
+//vypsání do stránky
+let toTasks = document.querySelector(".tasks")
+// uložení vyfiltrovaného
+let results = []
+
+
+// filtr
+let filter = function (tryToFind, tasks) {
+
+    let ourResult = tasks.filter(function(oneToDo){
+        return oneToDo.text.toLowerCase().includes(tryToFind.toLowerCase())
+        
+    })
+    toTasks.innerHTML = ""
+    ourResult.forEach(function(oneResult){
+        results = document.createElement("p")
+        results.textContent = `${oneResult.text}`
+        toTasks.appendChild(results)
+    })
+    
+  // kolik úkolů zbývá udělat 
+    let toDoLeft2 = ourResult.filter(function(oneResult){
+        return oneResult.completion === false
+    })
+    
+    paragraph.textContent = `Zbývá úkolůs: ${toDoLeft2.length}`
+
+
+}
+
+// spuštění filtru
+search.addEventListener("input", function (event) {
+    filter(event.target.value.trim(), myToDos)
+})
+
+
+//

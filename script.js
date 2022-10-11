@@ -425,6 +425,46 @@
 //     city: "České Budějovice"
 // }]
 
+
+// let witness = prompt("Část poznávací značky:")
+// let resultCriminals = criminals.filter(function(oneCriminal){
+//     let suspect = oneCriminal.licencePlate.toLocaleLowerCase().includes("22")
+//     return suspect
+// })
+// //console.log(resultCriminals);
+// resultCriminals.forEach(function(oneResult){
+//     console.log(`Jméno: ${oneResult.firstName} ${oneResult.secondName}, ${oneResult.address}`);
+// })
+
+
+
+
+
+
+
+
+
+// let witness = prompt("Zadej jméno:")
+// let resultIndex = criminals.findIndex(function(oneSuspect){
+//     return oneSuspect.firstName === witness
+
+// })
+// console.log(resultIndex);
+// let resultPerson = criminals[resultIndex]
+// console.log(resultPerson);
+
+
+
+//console.log(`Jméno: ${}`);
+
+
+// let suspect = prompt("Zadej jméno podezřelého:")
+// let result = criminals.findIndex(function(name){
+//     return name.firstName === suspect
+
+
+
+
 // let witness = prompt()
 // let arrayResult = criminals.filter(function(oneSuspect){
 //     let tryFind = oneSuspect.licencePlate.toLowerCase().includes(witness)
@@ -446,7 +486,7 @@
 
 
 
-
+// ***********************************************************************
 // ***********************************************************************
 // + html
 
@@ -471,112 +511,88 @@
 // let pTestId = document.getElementById("test2")
 // console.log(pTestId);
 
-
-
-// let paragraphs = document.querySelectorAll("p")
-// paragraphs.forEach(function(oneParagraph){
-//     console.log(oneParagraph.textContent);
-// })
-
-
-
-// let paragraphs = document.querySelectorAll("p")
-
-// paragraphs.forEach(function(oneParagraph){
-//     if(oneParagraph.textContent.toLowerCase().includes("nakrmit")){
-//         oneParagraph.remove()
-//     }
-// })
-
-
-
 // let newParagraph = document.createElement("p")
-// newParagraph.textContent = "nový úkol"
-// document.querySelector("header").appendChild(newParagraph)
+// newParagraph.textContent = "Text nového odstavce"
+// document.querySelector("#from-form").appendChild(newParagraph)
 
 // const newDiv = document.createElement("div")
-// document.querySelector("header").appendChild(newDiv)
-
+// document.querySelector("#from-form").appendChild(newDiv)
 // let secondParagraph = document.createElement("p")
-// secondParagraph.textContent = "testovací odstavec do divu"
+// secondParagraph.textContent = "Text odstavce v divu"
 // newDiv.appendChild(secondParagraph)
+// secondParagraph.prepend("Prependnutý text")
+// secondParagraph.append("Appendnutý text")
 
-// secondParagraph.append("text na začátek")
-// secondParagraph.prepend("text na konec")
 
-// ZMĚNA OBSAHU PO KLIKNUTÍ
-// document.querySelector("h1").addEventListener("click", function(event){
-//     event.target.textContent = "klikni na nadpis níže"
+
+// let header1 = document.querySelector("h1")
+// header1.addEventListener("click", function(event){
+//     header1.textContent = "Klikni na nadpis níže!"
 // })
 
-// document.querySelector("h2").addEventListener("click", function(event){
-//     event.target.textContent = "klikni na nadpis níže"
-// })
-
-// document.querySelector("h3").addEventListener("click", function(event){
-//     event.target.textContent = "hotovo"
+// let header2 = document.querySelector("h2")
+// header2.addEventListener("click", function(event){
+//     header2.textContent = "Klikni na nadpis níže"
 // })
 
 
-
-
-
-// let criminals = [{
-//     firstName: "Martin",
-//     secondName: "Zelený",
-//     birth: 1985,
-//     licencePlate: "85cc322",
-//     address: "U sloupů 16",
-//     city: "České Budějovice"
-// }, {
-//     firstName: "Jana",
-//     secondName: "Růžová",
-//     birth: 1996,
-//     licencePlate: "85b32",
-//     address: "Malská 29",
-//     city: "České Budějovice"
-// }, {
-//     firstName: "Filip",
-//     secondName: "Modrý",
-//     birth: 1989,
-//     licencePlate: "asd3",
-//     address: "Stevardská 38",
-//     city: "České Budějovice"
-// }]
-
-// // uložení dat z políčka
-// let filters = {
-//     searchText: ""
-// }
-
-// //Filtr
-// const renderCriminals = function(ourCriminals, tryToFind){
-//     let arrayResult = ourCriminals.filter(function(oneSuspect){
-//         return oneSuspect.licencePlate.toLowerCase().includes(tryToFind.searchText.toLowerCase())
-        
-//     });
-//     document.querySelector("#idCriminal").innerHTML = ""
-//     arrayResult.forEach(function(oneSuspect){
-        
-//         let paragraph = document.createElement("p")
-//         paragraph.innerHTML = `Jméno: ${oneSuspect.firstName} ${oneSuspect.secondName}`
-//         document.querySelector("#idCriminal").appendChild(paragraph)
-
-//     })
-        
-// }
-// // načtení dat z políčka
+// // zachycení z políčka
 // let licencePlate = document.querySelector("#licence-plate")
 
+// // pro vypisování výsledků
+// let paragraph = []
+// let resultDiv = document.querySelector("#idCriminal")
+
+// // filtr
+// let result = function(witness){
+//     resultDiv.innerHTML = ""
+//     criminals.filter(function(oneCriminal){
+//         if(oneCriminal.licencePlate.toLowerCase().includes(witness.toLowerCase())){
+//             paragraph = document.createElement("p")
+//             paragraph.textContent = `Jméno: ${oneCriminal.firstName} ${oneCriminal.secondName}`
+//             resultDiv.appendChild(paragraph)
+//         }
+//     })
+    
+// }
+
+// // spouštěč funkce
 // licencePlate.addEventListener("input", function(event){
-//     filters.searchText = event.target.value
-//     renderCriminals(criminals, filters)
+//     result(event.target.value.trim())
 // })
 
 
-document.querySelector("#test-form").addEventListener("submit", function(event){
-    event.preventDefault()
-    let paragraph = document.createElement("p")
-   paragraph.textContent = event.target.elements.firstName.value
-   document.querySelector("#from-form").appendChild(paragraph)
+
+// let fromForm = document.querySelector("#from-form")
+
+
+// document.querySelector("#test-form").addEventListener("submit", function(event){
+//     // vypnutí výchozího chování prohlížeče
+//     event.preventDefault()
+
+//     // načtení dat z políčka
+//     let firstName = event.target.firstName.value
+//     let secondName = event.target.secondName.value
+//     let adress = event.target.adress.value
+    
+//     // vytvoření a naplnění odstavce
+//     let paragraph = document.createElement("p")
+//     paragraph.innerHTML = `Jméno: ${firstName} <br>Přéjmení: ${secondName} <br>Adresa: ${adress}`
+//     fromForm.appendChild(paragraph)
+
+//     //po odeslíní vymazat obsah políček
+//     event.target.firstName.value = ""
+//     event.target.secondName.value = ""
+//     event.target.adress.value = ""
+// })
+
+
+
+document.querySelector("#check-box1").addEventListener("change", function(event){
+    console.log(event.target.checked);
 })
+
+
+
+
+
