@@ -588,11 +588,31 @@
 
 
 
-document.querySelector("#check-box1").addEventListener("change", function(event){
-    console.log(event.target.checked);
+// document.querySelector("#check-box1").addEventListener("change", function(event){
+//     console.log(event.target.checked);
+// })
+
+let myForm = document.querySelector("#my-form")
+let count = 0
+
+myForm.addEventListener("submit", function(event){
+    event.preventDefault()
+    // přístup k obsahu políčka
+    console.log(event.target.elements.task.value);
+
+    // count zvyšujeme o 1
+    count = count + 1
+     
+    let input = document.createElement("input")
+    input.type = "checkbox"
+    input.id = `testovaci-${count}`
+    document.querySelector("#results").appendChild(input)
+
+    let label = document.createElement("label")
+    label.textContent = event.target.elements.task.value
+    label.setAttribute("for", `testovaci-${count}`) 
+    console.log(label);
+    
 })
-
-
-
 
 
