@@ -592,27 +592,46 @@
 //     console.log(event.target.checked);
 // })
 
-let myForm = document.querySelector("#my-form")
-let count = 0
+// let myForm = document.querySelector("#my-form")
+// let count = 0
 
-myForm.addEventListener("submit", function(event){
-    event.preventDefault()
-    // přístup k obsahu políčka
-    console.log(event.target.elements.task.value);
+// myForm.addEventListener("submit", function(event){
+//     event.preventDefault()
+//     // přístup k obsahu políčka
+//     console.log(event.target.elements.task.value);
 
-    // count zvyšujeme o 1
-    count = count + 1
+//     // count zvyšujeme o 1
+//     count = count + 1
      
-    let input = document.createElement("input")
-    input.type = "checkbox"
-    input.id = `testovaci-${count}`
-    document.querySelector("#results").appendChild(input)
+//     let input = document.createElement("input")
+//     input.type = "checkbox"
+//     input.id = `testovaci-${count}`
+//     document.querySelector("#results").appendChild(input)
 
-    let label = document.createElement("label")
-    label.textContent = event.target.elements.task.value
-    label.setAttribute("for", `testovaci-${count}`) 
-    console.log(label);
+//     let label = document.createElement("label")
+//     label.textContent = event.target.elements.task.value
+//     label.setAttribute("for", `testovaci-${count}`) 
+//     console.log(label);
     
+// })
+
+
+// let myForm = document.querySelector("#mroy-form")
+// let body = document.querySelector("body")
+// myForm.addEventListener("submit", function(event){
+//     event.preventDefault()
+//     body.style.backgroundColor = event.target.color.value
+//     event.target.color.value = ""
+// })
+
+window.addEventListener("scroll", function(){
+    let scrolled = window.scrollY
+    let scrollable = document.documentElement.scrollHeight - window.innerHeight
+    let scrollHome = document.querySelector("#scroll-home")
+
+    if(Math.ceil(scrolled) > (scrollable/99)){
+        scrollHome.style.display = "block"
+    } else {
+        scrollHome.style.display = "none"
+    }
 })
-
-

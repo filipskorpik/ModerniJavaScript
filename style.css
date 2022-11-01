@@ -1,0 +1,10 @@
+#scroll-home {
+    display: none;
+    position: fixed;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 5px;
+    right: 0;
+    color: #fff;
+    bottom: 20vh;
+}
