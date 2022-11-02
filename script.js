@@ -624,14 +624,98 @@
 //     event.target.color.value = ""
 // })
 
-window.addEventListener("scroll", function(){
-    let scrolled = window.scrollY
-    let scrollable = document.documentElement.scrollHeight - window.innerHeight
-    let scrollHome = document.querySelector("#scroll-home")
+// window.addEventListener("scroll", function(){
+//     let scrolled = window.scrollY
+//     let scrollable = document.documentElement.scrollHeight - window.innerHeight
+//     let scrollHome = document.querySelector("#scroll-home")
 
-    if(Math.ceil(scrolled) > (scrollable/99)){
-        scrollHome.style.display = "block"
-    } else {
-        scrollHome.style.display = "none"
-    }
+//     if(Math.ceil(scrolled) > (scrollable/99)){
+//         scrollHome.style.display = "block"
+//     } else {
+//         scrollHome.style.display = "none"
+//     }
+// })
+
+
+
+
+
+
+// if(localStorage.getItem("users") == null) {
+//     let myArray = []
+// } else {
+//     myArray = JSON.parse(localStorage.getItem("users"))
+// }
+
+
+// let myForm = document.querySelector("#test-form")
+
+// myForm.addEventListener("submit", function(event){
+//     event.preventDefault()
+//     myArray.push(event.target.elements.firstName.value) 
+//     let myArrayToLS = JSON.stringify(myArray)
+//     localStorage.setItem("users", myArrayToLS)
+
+//     event.target.elements.firstName.value = ""
+
+//     let myArrayFromLS = localStorage.getItem("users")
+//     let myArrayFromLSj = JSON.parse(myArrayFromLS)
+
+//     let paragraph = document.createElement("p")
+//     paragraph.textContent = myArrayFromLSj[myArrayFromLSj.length -1]
+//     document.querySelector(".names").appendChild(paragraph)
+// })
+
+// let myPresentArray = localStorage.getItem("users")
+// let myPresentArrayJ = JSON.parse(myPresentArray)
+
+// if(myPresentArrayJ !== null){
+//     myPresentArrayJ.forEach(function(oneUser){
+//         let paragraph = document.createElement("p")
+//         paragraph.textContent = oneUser
+//         document.querySelector(".names").appendChild(paragraph)
+//     })
+// }    
+
+let myForm = document.querySelector("#test-form")
+if(localStorage.getItem("criminals") == null){
+    var myArray = []
+} else {
+    myArray = JSON.parse(localStorage.getItem("criminals"))
+}
+
+myForm.addEventListener("submit", function(event){
+    event.preventDefault()
+
+    myArray.push({
+        id: "",
+        firstName: event.target.elements.firstName.value,
+        secondName: event.target.elements.secondName.value,
+        crime: event.target.elements.crime.value
+        
+    })
+
+    event.target.elements.firstName.value = ""
+    event.target.elements.secondName.value = ""
+    event.target.elements.crime.value = ""
+
+    myArrayJSON = JSON.stringify(myArray)
+    localStorage.setItem("criminals", myArrayJSON)
+})
+
+let toList = document.querySelector(".to-list")
+toList.addEventListener("click", function(){
+    let myStorage = localStorage.getItem("criminals")
+    let myStorageJSON = JSON.parse(myStorage)
+
+    document.querySelector("list-criminals").innerHTML = ""
+
+    myStorageJSON.forEach(function(oneCriminal){
+        let paragraph = document.createElement("p")
+        paragraph.innerHTML = 
+        `Jméno: ${oneCriminal.firstName} ${oneCriminal.secondName} <br> 
+        Zločin: ${oneCriminal.crime}` 
+        
+        document.querySelector(".list-criminals").appendChild(paragraph)
+    })
 })
