@@ -705,10 +705,15 @@ myForm.addEventListener("submit", function(event){
 
 let toList = document.querySelector(".to-list")
 toList.addEventListener("click", function(){
+    if(localStorage.getItem("criminals") == null){
+        let paragraph = document.createElement("p")
+        paragraph.textContent = "Databáze je prázdná"
+        document.querySelector(".list-criminals").appendChild(paragraph)
+    } else {
     let myStorage = localStorage.getItem("criminals")
     let myStorageJSON = JSON.parse(myStorage)
-
-    document.querySelector("list-criminals").innerHTML = ""
+    
+    document.querySelector(".list-criminals").innerHTML = ""
 
     myStorageJSON.forEach(function(oneCriminal){
         let paragraph = document.createElement("p")
@@ -718,4 +723,5 @@ toList.addEventListener("click", function(){
         
         document.querySelector(".list-criminals").appendChild(paragraph)
     })
+   }
 })
